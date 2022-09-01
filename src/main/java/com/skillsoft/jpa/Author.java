@@ -1,11 +1,7 @@
 package com.skillsoft.jpa;
 
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 @Entity
 public class Author {
@@ -24,8 +20,8 @@ public class Author {
     }
 
     @Id
-    @SequenceGenerator(name = "bookstore_seq", sequenceName = "BOOK_SEQ")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bookstore_seq")
+    @TableGenerator(name = "bookstore_generator", table = "bookstore_table", pkColumnName = "gen_name", pkColumnValue = "author_id", valueColumnName = "gen_val", allocationSize = 100)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "bookstore_generator")
     public Integer getId() {
         return id;
     }
