@@ -3,6 +3,8 @@ package com.skillsoft.jpa;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class App {
     public static void main(String[] args) {
@@ -19,6 +21,12 @@ public class App {
             entityManager.persist(firstBook);
             entityManager.persist(secondBook);
             entityManager.persist(thirdBook);
+
+            Author firstAuthor = new Author("Gilad Bracha", new GregorianCalendar(1980, Calendar.FEBRUARY, 0).getTime());
+            Author secondAuthor = new Author("James Gosling", new GregorianCalendar(1975, Calendar.MARCH, 0).getTime());
+
+            entityManager.persist(firstAuthor);
+            entityManager.persist(secondAuthor);
 
         } catch (Exception e) {
             System.out.println("An exception occurred: " + e);
