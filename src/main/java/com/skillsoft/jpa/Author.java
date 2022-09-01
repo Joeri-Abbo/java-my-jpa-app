@@ -1,13 +1,22 @@
 package com.skillsoft.jpa;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.util.Date;
-import javax.persistence.*;
 
 @Entity
 public class Author {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name = "author_name", columnDefinition = "VARCHAR(55)")
     private String name;
+    @Column(name = "birth_date")
     private Date birthDate;
 
     public Author() {
@@ -19,8 +28,6 @@ public class Author {
         this.birthDate = birthDate;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }

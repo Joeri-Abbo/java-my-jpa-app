@@ -14,9 +14,9 @@ public class App {
         try {
             entityManager.getTransaction().begin();
 
-            Book firstBook = new Book("The Java Language Specification", "Gilad Bracha", 99f);
+            Book firstBook = new Book("The Java Language Specification", "Gilad Bracha", 99.99999f);
             Book secondBook = new Book("The Java Language Specification Second Edition", "Gilad Bracha, James Gosling", 119f);
-            Book thirdBook = new Book("Core Java Volume I", "Cay S. Horstmann", 59f);
+            Book thirdBook = new Book("Core Java Volume I", "Cay S. Horstmann", 59.9999f);
 
             entityManager.persist(firstBook);
             entityManager.persist(secondBook);

@@ -1,29 +1,39 @@
 package com.skillsoft.jpa;
 
-import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 @Entity
-@IdClass(value = BookKey.class)
 public class Book {
 
     @Id
-    private Integer titleHash;
-    @Id
-    private Float price;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(name = "author_name", columnDefinition = "VARCHAR(55)")
     private String author;
+
+    @Column(name = "book_title")
     private String title;
+    private Float price;
 
     public Book() {
 
     }
 
     public Book(String title, String author, Float price) {
-        this.title = title;
         this.author = author;
-        this.titleHash = Objects.hash(title);
+        this.title = title;
+        this.price = price;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setPrice(Float price) {
         this.price = price;
     }
 
