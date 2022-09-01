@@ -20,8 +20,7 @@ public class Author {
     }
 
     @Id
-    @TableGenerator(name = "bookstore_generator", table = "bookstore_table", pkColumnName = "gen_name", pkColumnValue = "author_id", valueColumnName = "gen_val", allocationSize = 100)
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "bookstore_generator")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }

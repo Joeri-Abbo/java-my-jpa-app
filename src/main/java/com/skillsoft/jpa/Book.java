@@ -10,10 +10,10 @@ import javax.persistence.TableGenerator;
 @Entity
 public class Book {
 
-    private Integer id;
-    private String title;
+    @Id
+    private BookKey bookKey;
     private String author;
-    private Float price;
+    private String title;
 
     public Book() {
 
@@ -22,18 +22,15 @@ public class Book {
     public Book(String title, String author, Float price) {
         this.title = title;
         this.author = author;
-        this.price = price;
+        this.bookKey = new BookKey(title, price);
     }
 
-    @Id
-    @TableGenerator(name = "bookstore_generator", table = "bookstore_table", pkColumnName = "gen_name", pkColumnValue = "book_id", valueColumnName = "gen_val", allocationSize = 10)
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "bookstore_generator")
-    public Integer getId() {
-        return id;
+    public BookKey getBookKey() {
+        return bookKey;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setBookKey(BookKey bookKey) {
+        this.bookKey = bookKey;
     }
 
     public String getTitle() {
@@ -50,13 +47,5 @@ public class Book {
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public Float getPrice() {
-        return this.price;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
     }
 }

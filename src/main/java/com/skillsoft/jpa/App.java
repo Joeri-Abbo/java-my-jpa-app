@@ -16,7 +16,7 @@ public class App {
 
             Book firstBook = new Book("The Java Language Specification", "Gilad Bracha", 99f);
             Book secondBook = new Book("The Java Language Specification Second Edition", "Gilad Bracha, James Gosling", 119f);
-            Book thirdBook = new Book();
+            Book thirdBook = new Book("Core Java Volume I", "Cay S. Horstmann", 59f);
 
             entityManager.persist(firstBook);
             entityManager.persist(secondBook);
