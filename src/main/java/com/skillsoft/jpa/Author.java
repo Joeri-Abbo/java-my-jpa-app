@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Transient;
 import java.util.Date;
 
 @Entity
@@ -14,9 +15,8 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, unique = true, length = 55)
     private String name;
-    @Column(name = "birth_date")
+    @Transient
     private Date birthDate;
 
     public Author() {
