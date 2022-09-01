@@ -14,22 +14,23 @@ public class App {
 
         try {
 
-//            Book bookOne = entityManager.find(Book.class, 221);
-//            System.out.println(bookOne);
-//
-//            Book bookTwo = entityManager.find(Book.class, 251);
-//            System.out.println(bookTwo);
-//
-//            Book bookThree = entityManager.find(Book.class,281);
-//            System.out.println(bookThree);
+            Book bookOne = entityManager.find(Book.class, 221);
+            Book bookTwo = entityManager.find(Book.class, 251);
+            System.out.println(bookOne);
+            System.out.println(bookTwo);
 
-            List<Book> books = entityManager.createQuery("SELECT b FROM Book b", Book.class).getResultList();
+            entityManager.getTransaction().begin();
 
-            System.out.println(books);
+            bookOne.setPrice(25.22f);
+            bookTwo.setTitle("Core Java Volume I - Fundamentals");
+
+            entityManager.merge(bookOne);
+            entityManager.merge(bookTwo);
 
         } catch (Exception e) {
             System.out.println("An exception occurred: " + e);
         } finally {
+            entityManager.getTransaction().commit();
 
             entityManager.close();
             factory.close();
