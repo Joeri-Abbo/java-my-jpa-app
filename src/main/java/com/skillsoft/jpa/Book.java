@@ -2,10 +2,9 @@ package com.skillsoft.jpa;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
 
 @Entity
-@Table(name = "book_details")
 public class Book {
 
     private Integer id;
@@ -17,13 +16,13 @@ public class Book {
 
     }
 
-    public Book(int id, String title, String author, float price) {
-        this.id = id;
+    public Book( String title, String author, Float price) {
         this.title = title;
         this.author = author;
         this.price = price;
     }
     @Id
+    @GeneratedValue
     public Integer getId() {
         return id;
     }
