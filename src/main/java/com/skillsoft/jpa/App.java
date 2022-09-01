@@ -14,20 +14,15 @@ public class App {
 
         try {
 
-            Book bookOne = entityManager.find(Book.class, 221);
-            Book bookTwo = entityManager.find(Book.class, 251);
-            System.out.println(bookOne);
-            System.out.println(bookTwo);
-
             entityManager.getTransaction().begin();
 
-            if (bookOne!= null){
-                entityManager.remove(bookOne);
-            }
-            if (bookTwo!= null){
-                entityManager.remove(bookTwo);
-            }
+            Book firstBook = new Book("The Java Language Specification", "Gilad Bracha", 99.99999f);
+            Book secondBook = new Book("The Java Language Specification Second Edition", "Gilad Bracha, James Gosling", 119f);
+            Book thirdBook = new Book("Core Java Volume I", "Cay S. Horstmann", 59.9999f);
 
+            entityManager.persist(firstBook);
+            entityManager.persist(secondBook);
+            entityManager.persist(thirdBook);
         } catch (Exception e) {
             System.out.println("An exception occurred: " + e);
         } finally {
