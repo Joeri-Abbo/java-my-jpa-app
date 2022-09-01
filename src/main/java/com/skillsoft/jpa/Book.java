@@ -17,6 +17,8 @@ public class Book {
 
     @Column(name = "book_title")
     private String title;
+
+    @Column(precision = 7, scale = 4)
     private Float price;
 
     public Book() {

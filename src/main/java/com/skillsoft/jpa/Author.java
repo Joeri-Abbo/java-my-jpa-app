@@ -14,7 +14,7 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "author_name", columnDefinition = "VARCHAR(55)")
+    @Column(name = "author_name", length = 44)
     private String name;
     @Column(name = "birth_date")
     private Date birthDate;
