@@ -12,10 +12,10 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "author_name", columnDefinition = "VARCHAR(55)")
+    @Column(nullable = false)
     private String author;
 
-    @Column(name = "book_title")
+    @Column(nullable = false, unique = true, length = 55)
     private String title;
 
     @Column(precision = 7, scale = 4)
