@@ -23,11 +23,12 @@ public class App {
             entityManager.persist(thirdBook);
 
             Author firstAuthor = new Author("Gilad Bracha", new GregorianCalendar(1980, Calendar.FEBRUARY, 0).getTime());
-            firstAuthor.setBio("Some very long personal bio here");
-            firstAuthor.setImage("Pretend this is an image".getBytes());
+            Address firstAddress = new Address("New York", "USA");
+            firstAuthor.setAddress(firstAddress);
 
             Author secondAuthor = new Author("James Gosling", new GregorianCalendar(1975, Calendar.MARCH, 0).getTime());
-            secondAuthor.setImage("Pretend this is also an image".getBytes());
+            Address secondAddress = new Address("San Francisco", "USA");
+            secondAuthor.setAddress(secondAddress);
 
             entityManager.persist(firstAuthor);
             entityManager.persist(secondAuthor);

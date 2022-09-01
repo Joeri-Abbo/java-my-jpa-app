@@ -12,15 +12,11 @@ public class Author {
     private Integer id;
 
     private String name;
-    @Basic(fetch = FetchType.LAZY)
-    @Lob
-    private String bio;
     @Temporal(TemporalType.TIMESTAMP)
     private Date birthDate;
 
-    @Basic(fetch = FetchType.LAZY)
-    @Lob
-    private byte[] image;
+    @Embedded
+    private Address address;
 
     public Author() {
 
@@ -55,19 +51,11 @@ public class Author {
         this.birthDate = birthDate;
     }
 
-    public String getBio() {
-        return bio;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
