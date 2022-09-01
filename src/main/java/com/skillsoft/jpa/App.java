@@ -33,6 +33,16 @@ public class App {
             entityManager.persist(firstAuthor);
             entityManager.persist(secondAuthor);
 
+            Publisher firstPublisher = new Publisher("Apress");
+            firstAddress = new Address("Paris", "France");
+            firstPublisher.setAddress(firstAddress);
+
+            Publisher secondPublisher = new Publisher("Apress");
+
+            entityManager.persist(firstPublisher);
+            entityManager.persist(secondPublisher);
+
+
         } catch (Exception e) {
             System.out.println("An exception occurred: " + e);
         } finally {
