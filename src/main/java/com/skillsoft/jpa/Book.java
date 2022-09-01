@@ -3,6 +3,7 @@ package com.skillsoft.jpa;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 @Entity
 public class Book {
@@ -16,13 +17,15 @@ public class Book {
 
     }
 
-    public Book( String title, String author, Float price) {
+    public Book(String title, String author, Float price) {
         this.title = title;
         this.author = author;
         this.price = price;
     }
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getId() {
         return id;
     }
