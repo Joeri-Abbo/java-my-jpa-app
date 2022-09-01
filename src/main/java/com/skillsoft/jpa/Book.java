@@ -2,8 +2,10 @@ package com.skillsoft.jpa;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "book_details")
 public class Book {
 
     private Integer id;
