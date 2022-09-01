@@ -21,11 +21,12 @@ public class App {
 
             entityManager.getTransaction().begin();
 
-            bookOne.setPrice(25.22f);
-            bookTwo.setTitle("Core Java Volume I - Fundamentals");
-
-            entityManager.merge(bookOne);
-            entityManager.merge(bookTwo);
+            if (bookOne!= null){
+                entityManager.remove(bookOne);
+            }
+            if (bookTwo!= null){
+                entityManager.remove(bookTwo);
+            }
 
         } catch (Exception e) {
             System.out.println("An exception occurred: " + e);
