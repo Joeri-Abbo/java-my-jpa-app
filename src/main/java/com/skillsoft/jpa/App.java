@@ -22,27 +22,6 @@ public class App {
             entityManager.persist(secondBook);
             entityManager.persist(thirdBook);
 
-            Author firstAuthor = new Author("Gilad Bracha", new GregorianCalendar(1980, Calendar.FEBRUARY, 0).getTime());
-            Address firstAddress = new Address("New York", "USA");
-            firstAuthor.setAddress(firstAddress);
-
-            Author secondAuthor = new Author("James Gosling", new GregorianCalendar(1975, Calendar.MARCH, 0).getTime());
-            Address secondAddress = new Address("San Francisco", "USA");
-            secondAuthor.setAddress(secondAddress);
-
-            entityManager.persist(firstAuthor);
-            entityManager.persist(secondAuthor);
-
-            Publisher firstPublisher = new Publisher("Apress");
-            firstAddress = new Address("Paris", "France");
-            firstPublisher.setAddress(firstAddress);
-
-            Publisher secondPublisher = new Publisher("Apress");
-
-            entityManager.persist(firstPublisher);
-            entityManager.persist(secondPublisher);
-
-
         } catch (Exception e) {
             System.out.println("An exception occurred: " + e);
         } finally {

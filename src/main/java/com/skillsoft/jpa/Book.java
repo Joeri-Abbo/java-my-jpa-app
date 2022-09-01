@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
 
 @Entity
 public class Book {
@@ -22,9 +21,6 @@ public class Book {
     @Column(precision = 7, scale = 4)
     private Float price;
 
-    @Transient
-    private boolean inStock;
-
     public Book() {
 
     }
@@ -33,8 +29,6 @@ public class Book {
         this.author = author;
         this.title = title;
         this.price = price;
-
-        this.inStock = true;
     }
 
     public Integer getId() {
@@ -61,11 +55,9 @@ public class Book {
         this.author = author;
     }
 
-    public boolean isInStock() {
-        return inStock;
+    @Override
+    public String toString() {
+        return "\n{" + id + ", " + title + ", " + author + ", " + price + "}\n";
     }
 
-    public void setInStock(boolean inStock) {
-        this.inStock = inStock;
-    }
 }
