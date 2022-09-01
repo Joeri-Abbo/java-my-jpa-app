@@ -9,17 +9,26 @@ public class App {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("BookstoreDB_Unit");
         EntityManager entityManager = factory.createEntityManager();
 
-        entityManager.getTransaction().begin();
+        try {
+            entityManager.getTransaction().begin();
 
-        Book firstBook = new Book(1234, "The Java Language Specification", "Gilad Bracha", 99);
-        Book secondBook = new Book(2222, "The Java Language Specification Second Edition", "Gilad Bracha, James Gosling", 119);
+            Book firstBook = new Book(1234, "The Java Language Specification", "Gilad Bracha", 99f);
+            Book secondBook = new Book(2222, "The Java Language Specification Second Edition", "Gilad Bracha, James Gosling", 119f);
+            Book thirdBook = new Book();
+            thirdBook.setId(3331);
 
-        entityManager.persist(firstBook);
-        entityManager.persist(secondBook);
+            entityManager.persist(firstBook);
+            entityManager.persist(secondBook);
+            entityManager.persist(thirdBook);
 
-        entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("An exception occurred: " + e);
+        } finally {
+            entityManager.getTransaction().commit();
 
-        entityManager.close();
-        factory.close();
+            entityManager.close();
+            factory.close();
+        }
+
     }
 }
