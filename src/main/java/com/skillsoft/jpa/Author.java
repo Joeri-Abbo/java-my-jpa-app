@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Author {
@@ -23,7 +24,8 @@ public class Author {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "bookstore_seq", sequenceName = "BOOK_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bookstore_seq")
     public Integer getId() {
         return id;
     }
