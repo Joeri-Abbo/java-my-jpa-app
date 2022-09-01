@@ -1,12 +1,13 @@
 package com.skillsoft.jpa;
 
-import javax.persistence.Column;
+import java.util.Date;
+
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Transient;
-import java.util.Date;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Author {
@@ -16,7 +17,9 @@ public class Author {
     private Integer id;
 
     private String name;
-    @Transient
+//    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.TIME)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date birthDate;
 
     public Author() {
