@@ -1,13 +1,18 @@
 package com.skillsoft.jpa;
 
+import java.util.Objects;
 import javax.persistence.Entity;
-import javax.persistence.EmbeddedId;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
 
 @Entity
+@IdClass(value = BookKey.class)
 public class Book {
 
-    @EmbeddedId
-    private BookKey bookKey;
+    @Id
+    private Integer titleHash;
+    @Id
+    private Float price;
     private String author;
     private String title;
 
@@ -18,15 +23,8 @@ public class Book {
     public Book(String title, String author, Float price) {
         this.title = title;
         this.author = author;
-        this.bookKey = new BookKey(title, price);
-    }
-
-    public BookKey getBookKey() {
-        return bookKey;
-    }
-
-    public void setBookKey(BookKey bookKey) {
-        this.bookKey = bookKey;
+        this.titleHash = Objects.hash(title);
+        this.price = price;
     }
 
     public String getTitle() {
