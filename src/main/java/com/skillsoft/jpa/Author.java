@@ -2,12 +2,7 @@ package com.skillsoft.jpa;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 public class Author {
@@ -17,10 +12,15 @@ public class Author {
     private Integer id;
 
     private String name;
-//    @Temporal(TemporalType.DATE)
-//    @Temporal(TemporalType.TIME)
+    @Basic(fetch = FetchType.LAZY)
+    @Lob
+    private String bio;
     @Temporal(TemporalType.TIMESTAMP)
     private Date birthDate;
+
+    @Basic(fetch = FetchType.LAZY)
+    @Lob
+    private byte[] image;
 
     public Author() {
 
@@ -53,5 +53,21 @@ public class Author {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }
