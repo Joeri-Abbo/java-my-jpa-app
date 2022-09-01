@@ -1,16 +1,12 @@
 package com.skillsoft.jpa;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.TableGenerator;
+import javax.persistence.EmbeddedId;
 
 @Entity
 public class Book {
 
-    @Id
+    @EmbeddedId
     private BookKey bookKey;
     private String author;
     private String title;
