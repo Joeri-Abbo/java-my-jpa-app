@@ -15,6 +15,7 @@ public class Order implements Serializable {
     private Integer id;
     @OneToMany
     @JoinColumn(name = "order_id")
+    @OrderBy("name ASC")
     private List<Product> products;
     private Integer quantity;
 
