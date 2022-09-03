@@ -18,6 +18,8 @@ public class Student implements Serializable {
 
     @ElementCollection
     @CollectionTable(name = "courses")
+    @MapKeyColumn(name = "course_id")
+    @Column(name = "course_name")
     private Map<Integer, String> courses;
 
     public Student() {
