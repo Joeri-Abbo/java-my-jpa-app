@@ -16,10 +16,9 @@ public class Student implements Serializable {
 
     private String name;
 
-    @ElementCollection
-    @CollectionTable(name = "courses")
-    @MapKeyColumn(name = "course_id")
-    @Column(name = "course_name")
+    @OneToMany
+    @CollectionTable(name = "students_courses")
+    @MapKeyColumn(name = "course_code")
     private Map<Integer, Course> courses;
 
     public Student() {
