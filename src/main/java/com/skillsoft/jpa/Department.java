@@ -5,7 +5,7 @@ import java.util.*;
 import javax.persistence.*;
 
 @Entity(name = "departments")
-public class Department implements Serializable{
+public class Department implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -14,8 +14,7 @@ public class Department implements Serializable{
     private Integer id;
     private String name;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
-//    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "department_id")
     private Set<Employee> employees;
 
@@ -47,7 +46,7 @@ public class Department implements Serializable{
     }
 
     public void addEmployee(Employee employee) {
-        if (employees ==null){
+        if (employees == null) {
             employees = new HashSet<>();
         }
         employees.add(employee);

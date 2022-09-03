@@ -11,9 +11,9 @@ public class App {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("CompanyDB_Unit");
         EntityManager entityManager = factory.createEntityManager();
 
-//        try {
-//            entityManager.getTransaction().begin();
-//
+        try {
+            entityManager.getTransaction().begin();
+
 //            Employee alice = new Employee("Alice");
 //            Employee ben = new Employee("Ben");
 //            Employee cora = new Employee("Cora");
@@ -26,34 +26,29 @@ public class App {
 //            Department sales = new Department("Sales");
 //            sales.addEmployee(cora);
 //            sales.addEmployee(dennis);
-//
+
 //            entityManager.persist(engineering);
 //            entityManager.persist(sales);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            entityManager.getTransaction().commit();
-//            entityManager.close();
-//            factory.close();
-//
-//        }
 
-        try {
-            entityManager.getTransaction().begin();
-//            Department sales = entityManager.find(Department.class, 2);
-//            entityManager.remove(sales);
+            Department sales = entityManager.find(Department.class, 2);
+
+            Employee elsa = new Employee("Elsa");
+            sales.addEmployee(elsa);
+            entityManager.merge(sales);
 
             Department engineering = entityManager.find(Department.class, 1);
-            entityManager.remove(engineering);
-        } catch (Exception e){
+
+            Employee fred = new Employee("Fred");
+            engineering.addEmployee(fred);
+            entityManager.merge(engineering);
+
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             entityManager.getTransaction().commit();
             entityManager.close();
-        factory.close();
+            factory.close();
+
         }
-
-
     }
 }
