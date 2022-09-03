@@ -1,14 +1,19 @@
 package com.skillsoft.jpa;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity(name = "Orders")
-public class Order {
+public class Order implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String product;
+    @OneToMany
+    private List<Product> products;
     private Integer quantity;
 
     @Temporal(TemporalType.DATE)
@@ -22,9 +27,8 @@ public class Order {
 
     }
 
-    public Order(String product, Integer quantity, Date orderDate) {
-        this.product = product;
-        this.quantity = quantity;
+    public Order(List<Product> products, Date orderDate) {
+        this.products = products;
         this.orderDate = orderDate;
     }
 
@@ -36,12 +40,12 @@ public class Order {
         this.id = id;
     }
 
-    public String getProduct() {
-        return product;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setProduct(String product) {
-        this.product = product;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public Integer getQuantity() {
@@ -69,6 +73,6 @@ public class Order {
     }
 
     public String toString() {
-        return "\n{" + id + ", " + product + ", " + quantity + "}\n";
+        return "\n{" + id + ", " + products + ", " + quantity + "}\n";
     }
 }
