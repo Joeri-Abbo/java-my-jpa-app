@@ -13,7 +13,7 @@ public class App {
         try {
             TypedQuery<Product> productQuery = entityManager.createQuery("SELECT p FROM Products p WHERE p.name LIKE :nameStartsWith AND p.price > :priceParameter", Product.class);
             productQuery.setParameter("nameStartsWith", "iPh%");
-            productQuery.setParameter("priceParameter", 10fgit add);
+            productQuery.setParameter("priceParameter", 10f);
             List<Product> products = productQuery.getResultList();
             System.out.println(products);
 
