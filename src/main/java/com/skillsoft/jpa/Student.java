@@ -2,10 +2,12 @@ package com.skillsoft.jpa;
 
 import java.io.Serializable;
 import java.util.List;
+
 import javax.persistence.*;
 
-@Entity(name = "Products")
-public class Product implements Serializable {
+@Entity(name = "Students")
+public class Student implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -14,15 +16,16 @@ public class Product implements Serializable {
 
     private String name;
 
-    @ManyToMany(mappedBy = "products")
-    private List<Customer> customers;
+    @ElementCollection
+    private List<String> courses;
 
-    public Product() {
+    public Student() {
 
     }
 
-    public Product(String name) {
+    public Student(String name, List<String> courses) {
         this.name = name;
+        this.courses = courses;
     }
 
     public Integer getId() {
@@ -41,12 +44,12 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-    public List<Customer> getCustomers() {
-        return customers;
+    public List<String> getCourses() {
+        return courses;
     }
 
-    public void setCustomers(List<Customer> customers) {
-        this.customers = customers;
+    public void setCourses(List<String> courses) {
+        this.courses = courses;
     }
 
     @Override
