@@ -40,9 +40,31 @@ public class App {
             e.printStackTrace();
         } finally {
             entityManager.getTransaction().commit();
-
-            entityManager.close();
-            factory.close();
         }
+
+
+        try {
+            Product productOne = entityManager.find(Product.class, 1);
+            System.out.println(productOne);
+            System.out.println(productOne.getOrder());
+
+
+            Product productFive = entityManager.find(Product.class, 5);
+            System.out.println(productFive);
+            System.out.println(productFive.getOrder());
+
+            Order orderOne = entityManager.find(Order.class,1);
+            System.out.println(orderOne);
+            System.out.println(orderOne.getProducts());
+
+            Order orderTwo = entityManager.find(Order.class,2);
+            System.out.println(orderTwo);
+            System.out.println(orderTwo.getProducts());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        entityManager.close();
+        factory.close();
     }
 }
