@@ -3,10 +3,6 @@ package com.skillsoft.jpa;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
 
 public class App {
 
@@ -17,9 +13,9 @@ public class App {
 
         try {
             Order orderOne = entityManager.find(Order.class, 1);
-//            System.out.println(orderOne);
+            System.out.println(orderOne);
             Order orderTwo = entityManager.find(Order.class, 2);
-//            System.out.println(orderTwo);
+            System.out.println(orderTwo);
         } catch (Exception e){
             e.printStackTrace();
         }
