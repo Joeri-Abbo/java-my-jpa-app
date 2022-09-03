@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 
 @Entity(name = "Orders")
 public class Order implements Serializable {
@@ -13,6 +15,7 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @OneToMany
+    @JoinTable(name = "order_product_mapping", joinColumns = {@JoinColumn(name = "o_id", referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "p_id", referencedColumnName = "id")})
     private List<Product> products;
     private Integer quantity;
 
