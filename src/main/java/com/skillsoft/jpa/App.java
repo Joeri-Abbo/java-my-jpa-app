@@ -11,10 +11,10 @@ public class App {
         EntityManager entityManager = factory.createEntityManager();
 
         try {
-            TypedQuery<Product> productQuery = entityManager.createQuery("SELECT p FROM Products p WHERE p.id = ?1", Product.class);
-            productQuery.setParameter(1, 1005);
-            Product product = productQuery.getSingleResult();
-            System.out.println(product);
+            TypedQuery<Product> productQuery = entityManager.createQuery("SELECT p FROM Products p WHERE p.id > :pid ORDER BY price", Product.class);
+            productQuery.setParameter("pid", 1005);
+            List<Product> products = productQuery.getResultList();
+            System.out.println(products);
 
         } catch (Exception e) {
             e.printStackTrace();
