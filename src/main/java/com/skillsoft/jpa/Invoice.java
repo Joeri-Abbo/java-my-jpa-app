@@ -4,8 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 @Entity(name = "Invoices")
 public class Invoice implements Serializable {
@@ -13,11 +14,11 @@ public class Invoice implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Float amount;
 
-    @OneToOne
-    @MapsId
+    @OneToOne(mappedBy = "invoice")
     private Order order;
 
     public Invoice() {

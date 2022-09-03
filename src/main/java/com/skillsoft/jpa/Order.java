@@ -14,8 +14,8 @@ public class Order {
     @Temporal(TemporalType.DATE)
     private Date orderDate;
 
-
-    @OneToOne(mappedBy = "order")
+    @OneToOne
+    @JoinTable(name = "order_invoice", joinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "invoice_id", referencedColumnName = "id")})
     private Invoice invoice;
 
     public Order() {

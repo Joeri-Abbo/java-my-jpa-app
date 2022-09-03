@@ -21,12 +21,14 @@ public class App {
 
             Order orderOne = new Order("iPhone 6S", 1, new GregorianCalendar(2020, Calendar.FEBRUARY, 3).getTime());
             Order orderTwo = new Order("Nike Sneakers", 2, new GregorianCalendar(2020, Calendar.MARCH, 5).getTime());
+            Order orderThree = new Order("BenQ Monitor", 4, new GregorianCalendar(2020, Calendar.MAY, 4).getTime());
 
-            invoiceOne.setOrder(orderOne);
-            invoiceTwo.setOrder(orderTwo);
+            orderOne.setInvoice(invoiceOne);
+            orderTwo.setInvoice(invoiceTwo);
 
             entityManager.persist(orderOne);
             entityManager.persist(orderTwo);
+            entityManager.persist(orderThree);
 
             entityManager.persist(invoiceOne);
             entityManager.persist(invoiceTwo);
