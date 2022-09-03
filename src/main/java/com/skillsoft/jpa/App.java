@@ -14,15 +14,15 @@ public class App {
         try {
             entityManager.getTransaction().begin();
 
-            Map<Integer, Course> mapSarah = new HashMap<>();
+            Map<Course, Integer> mapSarah = new HashMap<>();
 
-            mapSarah.put(141, new Course("Intermediate", "Data Structures and Algorithms"));
-            mapSarah.put(101, new Course("Basic", "Statistics"));
-            mapSarah.put(104, new Course("Basic", "English"));
+            mapSarah.put(new Course("Intermediate", "Data Structures and Algorithms"), 141);
+            mapSarah.put(new Course("Basic", "Statistics"), 101);
+            mapSarah.put(new Course("Basic", "English"), 104);
 
-            Map<Integer, Course> mapTom = new HashMap<>();
-            mapTom.put(40, new Course("Intermediate", "Geology"));
-            mapTom.put(90, new Course("Advanced", "Math"));
+            Map<Course, Integer> mapTom = new HashMap<>();
+            mapTom.put(new Course("Intermediate", "Geology"), 40);
+            mapTom.put(new Course("Advanced", "Math"), 90);
 
             Student studentSarah = new Student("Sarah", mapSarah);
             Student studentTom = new Student("Tom", mapTom);
@@ -30,10 +30,10 @@ public class App {
             entityManager.persist(studentSarah);
             entityManager.persist(studentTom);
 
-            for(Course course: mapSarah.values()){
+            for (Course course : mapSarah.keySet()) {
                 entityManager.persist(course);
             }
-            for (Course course : mapTom.values()) {
+            for (Course course : mapTom.keySet()) {
                 entityManager.persist(course);
             }
         } catch (Exception e) {
