@@ -14,7 +14,7 @@ public class Department implements Serializable {
     private Integer id;
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "department_id")
     private Set<Employee> employees;
 
