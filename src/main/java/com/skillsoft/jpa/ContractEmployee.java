@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity(name = "ContractEmployees")
+@DiscriminatorValue("contract")
 public class ContractEmployee extends Employee implements Serializable {
     private static final long serialVersionUID = 1L;
 
