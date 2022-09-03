@@ -15,7 +15,7 @@ public class Order {
     private Date orderDate;
 
     @OneToOne
-    @JoinColumn(name = "invoice_key", referencedColumnName = "invoiceId")
+    @JoinColumn(name = "invoice_id")
     private Invoice invoice;
 
     public Order() {
@@ -69,6 +69,6 @@ public class Order {
     }
 
     public String toString() {
-        return "\n{" + id + ", " + product + ", " + quantity + ", " + invoice + "}\n";
+        return "\n{" + id + ", " + product + ", " + quantity + "}\n";
     }
 }

@@ -3,6 +3,7 @@ package com.skillsoft.jpa;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.OneToOne;
 import javax.persistence.Id;
 import java.io.Serial;
 import java.io.Serializable;
@@ -18,7 +19,8 @@ public class Invoice implements Serializable {
     private Integer id;
     private Float amount;
 
-    private Long invoiceId;
+    @OneToOne(mappedBy = "invoice")
+    private Order order;
 
     public Invoice() {
 
@@ -26,7 +28,6 @@ public class Invoice implements Serializable {
 
     public Invoice(Float amount) {
         this.amount = amount;
-        this.invoiceId = ((Double) (Math.random() * 1000000)).longValue();
     }
 
     public Integer getId() {
@@ -47,6 +48,6 @@ public class Invoice implements Serializable {
 
     @Override
     public String toString() {
-        return "\n{" + id + ", " + amount + ", " + invoiceId + "}\n";
+        return "\n{" + id + ", " + amount + ", " + order + "}\n";
     }
 }
