@@ -11,8 +11,9 @@ public class App {
         EntityManager entityManager = factory.createEntityManager();
 
         try {
-            TypedQuery<Product> productQuery = entityManager.createQuery("SELECT p FROM Products p WHERE p.category.id = ?1", Product.class);
+            TypedQuery<Product> productQuery = entityManager.createQuery("SELECT p FROM Products p WHERE p.category.id = ?1 AND p.price > ?2", Product.class);
             productQuery.setParameter(1, 231);
+            productQuery.setParameter(2, 10f);
             List<Product> products = productQuery.getResultList();
             System.out.println(products);
 
