@@ -16,23 +16,31 @@ public class App {
 //            Department engineering = new Department("Engineering");
 //
 //            FullTimeEmployee alice = new FullTimeEmployee("Alice", 50000);
-//            alice.setDepartment(engineering);
+//            FullTimeEmployee ben = new FullTimeEmployee("Ben", 45000);
 //
 //            ContractEmployee cora = new ContractEmployee("Cora", 50);
-//            cora.setDepartment(engineering);
+//            ContractEmployee dennis = new ContractEmployee("Dennis", 60);
 //
 //            Employee elsa = new Employee("Elsa");
+//
+//            engineering.addEmployee(alice);
+//            engineering.addEmployee(ben);
+//            engineering.addEmployee(cora);
+//            engineering.addEmployee(dennis);
 //            engineering.addEmployee(elsa);
 //
-//            entityManager.persist(alice);
-//            entityManager.persist(cora);
 //            entityManager.persist(engineering);
 
-            List<Employee> employees = (List<Employee>) entityManager.createQuery("from employees", Employee.class).getResultList();
+            FullTimeEmployee ft = entityManager.find(FullTimeEmployee.class, 2);
 
-            for (Employee e : employees) {
-                System.out.println(e.getName());
-            }
+            System.out.println();
+            System.out.println(ft.getName() + " Salary: " + ft.getSalary());
+
+            ContractEmployee ct = entityManager.find(ContractEmployee.class, 1);
+
+            System.out.println();
+            System.out.println(ct.getName() + " Hourly pay: " + ct.getHourlyPay());
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
