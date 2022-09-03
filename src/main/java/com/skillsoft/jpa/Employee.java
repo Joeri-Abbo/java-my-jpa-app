@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Entity(name = "employees")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "employee_type", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue("null")
 public class Employee implements Serializable {
     private static final long serialVersionUID = 1L;
 
