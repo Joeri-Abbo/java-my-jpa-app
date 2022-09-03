@@ -15,14 +15,16 @@ public class Order implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date orderDate;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany
+    @JoinColumn(name = "order_id")
     private List<Product> products;
 
     public Order() {
 
     }
 
-    public Order(Date orderDate) {
+    public Order(List<Product> products, Date orderDate) {
+        this.products = products;
         this.orderDate = orderDate;
     }
 
@@ -33,6 +35,7 @@ public class Order implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
+
     public Date getOrderDate() {
         return orderDate;
     }

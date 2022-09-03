@@ -15,15 +15,14 @@ public class Product implements Serializable {
     private Integer quantity;
 
     @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
+    @JoinColumn(name = "order_id")
     private Order order;
 
     public Product() {
 
     }
 
-    public Product(Order order, String name, Integer quantity) {
-        this.order = order;
+    public Product(String name, Integer quantity) {
         this.name = name;
         this.quantity = quantity;
     }

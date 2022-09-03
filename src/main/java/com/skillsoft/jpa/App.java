@@ -3,8 +3,10 @@ package com.skillsoft.jpa;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class App {
 
@@ -16,16 +18,27 @@ public class App {
         try {
             entityManager.getTransaction().begin();
 
-            Order orderOne = new Order(new GregorianCalendar(2020, Calendar.FEBRUARY, 3).getTime());
+            Product productOne = new Product("iPhone 6S", 1);
+            Product productTwo = new Product("Nike Sneakers", 1);
+            List<Product> listOne = new ArrayList<>();
 
-            Product productOne = new Product(orderOne, "iPhone 6S", 1);
-            Product productTwo = new Product(orderOne, "Nike Sneakers", 1);
+            listOne.add(productOne);
+            listOne.add(productTwo);
 
-            Order orderTwo = new Order(new GregorianCalendar(2020, Calendar.JUNE, 3).getTime());
+            Order orderOne = new Order(listOne, new GregorianCalendar(2020, Calendar.FEBRUARY, 3).getTime());
 
-            Product productThree = new Product(orderTwo, "Samsung Galaxy", 1);
-            Product productFour = new Product(orderTwo, "Crocs", 1);
-            Product productFive = new Product(orderTwo, "BenQ Monitor", 1);
+            Product productThree = new Product("Samsung Galaxy", 1);
+            Product productFour = new Product("Crocs", 1);
+            Product productFive = new Product("BenQ Monitor", 1);
+
+            List<Product> listTwo = new ArrayList<>();
+
+            listTwo.add(productThree);
+            listTwo.add(productFour);
+            listTwo.add(productFive);
+
+            Order orderTwo = new Order(listTwo, new GregorianCalendar(2020, Calendar.JUNE, 3).getTime());
+
 
             entityManager.persist(orderOne);
             entityManager.persist(orderTwo);
@@ -42,24 +55,30 @@ public class App {
             entityManager.getTransaction().commit();
         }
 
-
         try {
-            Product productOne = entityManager.find(Product.class, 1);
-            System.out.println(productOne);
-            System.out.println(productOne.getOrder());
+            Order orderOne = entityManager.find(Order.class, 1);
 
-
-            Product productFive = entityManager.find(Product.class, 5);
-            System.out.println(productFive);
-            System.out.println(productFive.getOrder());
-
-            Order orderOne = entityManager.find(Order.class,1);
             System.out.println(orderOne);
             System.out.println(orderOne.getProducts());
 
-            Order orderTwo = entityManager.find(Order.class,2);
+            Order orderTwo = entityManager.find(Order.class, 2);
+
             System.out.println(orderTwo);
             System.out.println(orderTwo.getProducts());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            Product productOne = entityManager.find(Product.class, 1);
+
+            System.out.println(productOne);
+            System.out.println(productOne.getOrder());
+
+            Product productFive = entityManager.find(Product.class, 5);
+
+            System.out.println(productFive);
+            System.out.println(productFive.getOrder());
         } catch (Exception e) {
             e.printStackTrace();
         }
