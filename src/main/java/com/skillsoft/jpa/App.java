@@ -11,31 +11,10 @@ public class App {
         EntityManager entityManager = factory.createEntityManager();
 
         try {
-//            Query categoryQuery = entityManager.createQuery("SELECT c FROM Categories c");
-//
-//            List<?> categories = categoryQuery.getResultList();
-//
-//            categories.forEach(System.out::println);
-//
-//            Query productQuery = entityManager.createQuery("SELECT p FROM Products p");
-//            List<?> products = productQuery.getResultList();
-//
-//            products.forEach(System.out::println);
-//
-//
-//            System.out.println("Position of first result: " + categoryQuery.getFirstResult());
-//            System.out.println("Max result retrieved: " + categoryQuery.getMaxResults());
-//
-//            @SuppressWarnings("unchecked") List<Category> categoryList = (List<Category>) categoryQuery.getResultList();
-//
-//            System.out.println(categoryList);
-
-            TypedQuery<Product> productQuery = entityManager.createQuery(
-                    "SELECT p FROM Products p", Product.class
-            );
-
-            List<Product> productList = productQuery.getResultList();
-            System.out.println(productList);
+            TypedQuery<Product> productQuery = entityManager.createQuery("SELECT p FROM Products p WHERE p.id = :pid", Product.class);
+            productQuery.setParameter("pid", 1003);
+            Product product = productQuery.getSingleResult();
+            System.out.println(product);
 
         } catch (Exception e) {
             e.printStackTrace();
