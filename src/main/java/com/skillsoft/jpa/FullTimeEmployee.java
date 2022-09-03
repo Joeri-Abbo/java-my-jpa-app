@@ -5,15 +5,10 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity(name = "FulltimeEmployees")
-@DiscriminatorValue("fulltime")
 public class FullTimeEmployee extends Employee implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer salary;
-
-    @ManyToOne
-    @JoinColumn(name = "department_id")
-    private Department department;
 
     public FullTimeEmployee() {
 
@@ -31,13 +26,5 @@ public class FullTimeEmployee extends Employee implements Serializable {
 
     public void setSalary(Integer salary) {
         this.salary = salary;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
     }
 }

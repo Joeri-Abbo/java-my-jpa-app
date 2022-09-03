@@ -4,9 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity(name = "employees")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "employee_type", discriminatorType = DiscriminatorType.STRING)
-@DiscriminatorValue("null")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Employee implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -14,6 +12,10 @@ public class Employee implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
 
     public Employee() {
 
@@ -37,5 +39,13 @@ public class Employee implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }

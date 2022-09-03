@@ -1,6 +1,7 @@
 package com.skillsoft.jpa;
 
 import javax.persistence.*;
+import java.util.List;
 
 public class App {
 
@@ -10,42 +11,33 @@ public class App {
         EntityManager entityManager = factory.createEntityManager();
 
         try {
-            entityManager.getTransaction().begin();
-//            FullTimeEmployee alice = new FullTimeEmployee("Alice", 50000);
-//            FullTimeEmployee ben = new FullTimeEmployee("Ben", 45000);
-//
-//            ContractEmployee cora = new ContractEmployee("Cora", 50);
-//            ContractEmployee dennis = new ContractEmployee("Dennis", 60);
+//            entityManager.getTransaction().begin();
 //
 //            Department engineering = new Department("Engineering");
-//            engineering.addEmployee(alice);
-//            engineering.addEmployee(ben);
 //
-//            Vendor admin = new Vendor("Administrative");
-//            admin.addEmployee(cora);
-//            admin.addEmployee(dennis);
+//            FullTimeEmployee alice = new FullTimeEmployee("Alice", 50000);
+//            alice.setDepartment(engineering);
 //
+//            ContractEmployee cora = new ContractEmployee("Cora", 50);
+//            cora.setDepartment(engineering);
+//
+//            Employee elsa = new Employee("Elsa");
+//            engineering.addEmployee(elsa);
+//
+//            entityManager.persist(alice);
+//            entityManager.persist(cora);
 //            entityManager.persist(engineering);
-//            entityManager.persist(admin);
 
-            FullTimeEmployee alice = entityManager.find(FullTimeEmployee.class, 1);
-            System.out.println(alice.getName());
-            System.out.println(alice.getSalary());
+            List<Employee> employees = (List<Employee>) entityManager.createQuery("from employees", Employee.class).getResultList();
 
-
-            ContractEmployee cora = entityManager.find(ContractEmployee.class, 3);
-            System.out.println(cora.getName());
-            System.out.println(cora.getHourlyPay());
-
-            Employee zoe = entityManager.find(Employee.class, 333);
-            System.out.println("\n\nemployee_type is null: " + zoe.getName());
-
-            UnknownEmployee zara = entityManager.find(UnknownEmployee.class, 222);
-            System.out.println("\n\nemployee_type is not a known value: " + zara.getName());
+            for (Employee e : employees) {
+                System.out.println(e.getName());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
 //            entityManager.getTransaction().commit();
+
             entityManager.close();
             factory.close();
         }
