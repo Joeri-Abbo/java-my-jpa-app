@@ -14,10 +14,6 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @OneToMany
-    @JoinColumn(name = "order_id")
-    @OrderColumn(name = "order_persistence")
-    private List<Product> products;
     private Integer quantity;
 
     @Temporal(TemporalType.DATE)
@@ -27,8 +23,7 @@ public class Order implements Serializable {
 
     }
 
-    public Order(List<Product> products, Date orderDate) {
-        this.products = products;
+    public Order(Date orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -38,14 +33,6 @@ public class Order implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 
     public Integer getQuantity() {
@@ -66,6 +53,6 @@ public class Order implements Serializable {
 
 
     public String toString() {
-        return "\n{" + id + ", " + products + ", " + quantity + "}\n";
+        return "\n{" + id + ", " + quantity + "}\n";
     }
 }

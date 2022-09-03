@@ -3,10 +3,8 @@ package com.skillsoft.jpa;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 public class App {
 
@@ -18,25 +16,15 @@ public class App {
         try {
             entityManager.getTransaction().begin();
 
-            Product productOne = new Product("iPhone 6S", 1);
-            Product productTwo = new Product("Nike Sneakers", 1);
-
-            List<Product> listOne = new ArrayList<>();
-            listOne.add(productOne);
-            listOne.add(productTwo);
-
-            Order orderOne = new Order(listOne, new GregorianCalendar(2020, Calendar.FEBRUARY, 3).getTime());
+            Order orderOne = new Order(new GregorianCalendar(2020, Calendar.FEBRUARY, 3).getTime());
+            Product productOne = new Product(orderOne, "iPhone 6S", 1);
+            Product productTwo = new Product(orderOne, "Nike Sneakers", 1);
 
 
-            Product productThree = new Product("Samsung Galaxy", 1);
-            Product productFour = new Product("Crocs", 1);
-            Product productFive = new Product("BenQ Monitor", 1);
-
-            List<Product> listTwo = new ArrayList<>();
-            listTwo.add(productThree);
-            listTwo.add(productFour);
-            listTwo.add(productFive);
-            Order orderTwo = new Order(listTwo, new GregorianCalendar(2020, Calendar.JUNE, 3).getTime());
+            Order orderTwo = new Order(new GregorianCalendar(2020, Calendar.JUNE, 3).getTime());
+            Product productThree = new Product(orderTwo, "Samsung Galaxy", 1);
+            Product productFour = new Product(orderTwo, "Crocs", 1);
+            Product productFive = new Product(orderTwo, "BenQ Monitor", 1);
 
             entityManager.persist(orderOne);
             entityManager.persist(orderTwo);

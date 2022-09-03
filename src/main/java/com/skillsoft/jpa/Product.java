@@ -14,11 +14,15 @@ public class Product implements Serializable {
     private String name;
     private Integer quantity;
 
+    @ManyToOne
+    private Order order;
+
     public Product() {
 
     }
 
-    public Product(String name, Integer quantity) {
+    public Product(Order order, String name, Integer quantity) {
+        this.order = order;
         this.name = name;
         this.quantity = quantity;
     }
