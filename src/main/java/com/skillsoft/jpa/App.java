@@ -4,8 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 public class App {
@@ -18,30 +16,37 @@ public class App {
         try {
             entityManager.getTransaction().begin();
 
-            Product productOne = new Product("iPhone 6S", 1);
-            Product productTwo = new Product("Nike Sneakers", 1);
-            List<Product> listOne = new ArrayList<>();
+            Product productOne = new Product("iPhone 6S");
+            Product productTwo = new Product("Nike Sneakers");
+            Product productThree = new Product("Samsung Galaxy");
+            Product productFour = new Product("Crocs");
+            Product productFive = new Product("BenQ Monitor");
 
-            listOne.add(productOne);
-            listOne.add(productTwo);
+            List<Product> listCustomerOne = new ArrayList<>();
+            List<Product> listCustomerTwo = new ArrayList<>();
+            List<Product> listCustomerThree = new ArrayList<>();
 
-            Order orderOne = new Order(listOne, new GregorianCalendar(2020, Calendar.FEBRUARY, 3).getTime());
+            listCustomerOne.add(productOne);
+            listCustomerOne.add(productTwo);
+            listCustomerOne.add(productThree);
 
-            Product productThree = new Product("Samsung Galaxy", 1);
-            Product productFour = new Product("Crocs", 1);
-            Product productFive = new Product("BenQ Monitor", 1);
+            Customer customerOne = new Customer("John", listCustomerOne);
 
-            List<Product> listTwo = new ArrayList<>();
+            listCustomerTwo.add(productOne);
+            listCustomerTwo.add(productThree);
 
-            listTwo.add(productThree);
-            listTwo.add(productFour);
-            listTwo.add(productFive);
+            Customer customerTwo = new Customer("Julie", listCustomerTwo);
 
-            Order orderTwo = new Order(listTwo, new GregorianCalendar(2020, Calendar.JUNE, 3).getTime());
+            listCustomerThree.add(productOne);
+            listCustomerThree.add(productThree);
+            listCustomerThree.add(productFour);
+
+            Customer customerThree = new Customer("Ben", listCustomerThree);
 
 
-            entityManager.persist(orderOne);
-            entityManager.persist(orderTwo);
+            entityManager.persist(customerOne);
+            entityManager.persist(customerTwo);
+            entityManager.persist(customerThree);
 
             entityManager.persist(productOne);
             entityManager.persist(productTwo);
@@ -53,33 +58,18 @@ public class App {
             e.printStackTrace();
         } finally {
             entityManager.getTransaction().commit();
+
         }
 
         try {
-            Order orderOne = entityManager.find(Order.class, 1);
+            Customer customerOne = entityManager.find(Customer.class,1);
+            System.out.println(customerOne);
+            System.out.println(customerOne.getProducts());
 
-            System.out.println(orderOne);
-            System.out.println(orderOne.getProducts());
-
-            Order orderTwo = entityManager.find(Order.class, 2);
-
-            System.out.println(orderTwo);
-            System.out.println(orderTwo.getProducts());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        try {
-            Product productOne = entityManager.find(Product.class, 1);
-
-            System.out.println(productOne);
-            System.out.println(productOne.getOrder());
-
-            Product productFive = entityManager.find(Product.class, 5);
-
-            System.out.println(productFive);
-            System.out.println(productFive.getOrder());
-        } catch (Exception e) {
+            Customer customerThree = entityManager.find(Customer.class,3);
+            System.out.println(customerThree);
+            System.out.println(customerThree.getProducts());
+        } catch (Exception e){
             e.printStackTrace();
         }
 

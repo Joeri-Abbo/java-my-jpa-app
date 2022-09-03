@@ -1,6 +1,7 @@
 package com.skillsoft.jpa;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity(name = "Products")
@@ -12,19 +13,16 @@ public class Product implements Serializable {
     private Integer id;
 
     private String name;
-    private Integer quantity;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @ManyToMany(mappedBy = "products")
+    private List<Customer> customers;
 
     public Product() {
 
     }
 
-    public Product(String name, Integer quantity) {
+    public Product(String name) {
         this.name = name;
-        this.quantity = quantity;
     }
 
     public Integer getId() {
@@ -43,20 +41,12 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public List<Customer> getCustomers() {
+        return customers;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
 
     @Override
