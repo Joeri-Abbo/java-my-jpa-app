@@ -17,16 +17,15 @@ public class App {
         try {
             entityManager.getTransaction().begin();
 
-            Set<String> listSarah = new HashSet<>();
+            Set<Course> listSarah = new HashSet<>();
 
-            listSarah.add("Data Structures and Algorithms");
-            listSarah.add("Statistics");
-            listSarah.add("English");
-            listSarah.add("Data Structures and Algorithms");
+            listSarah.add(new Course("CS141", "Data Structures and Algorithms"));
+            listSarah.add(new Course("STAT101", "Statistics"));
+            listSarah.add(new Course("EN104", "English"));
 
-            Set<String> listTom = new HashSet<>();
-            listTom.add("Geology");
-            listTom.add("Math");
+            Set<Course> listTom = new HashSet<>();
+            listTom.add(new Course("GEO40", "Geology"));
+            listTom.add(new Course("MATH90", "Math"));
 
             Student studentSarah = new Student("Sarah", listSarah);
             Student studentTom = new Student("Tom", listTom);
@@ -39,22 +38,8 @@ public class App {
         } finally {
             entityManager.getTransaction().commit();
 
+            entityManager.close();
+            factory.close();
         }
-
-        try {
-            Student s1 = entityManager.find(Student.class, 1);
-            System.out.println(s1);
-            System.out.println(s1.getCourses());
-
-            Student s2 = entityManager.find(Student.class, 2);
-            System.out.println(s2);
-            System.out.println(s2.getCourses());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        entityManager.close();
-        factory.close();
     }
 }
