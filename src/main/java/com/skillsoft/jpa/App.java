@@ -36,9 +36,23 @@ public class App {
             e.printStackTrace();
         } finally {
             entityManager.getTransaction().commit();
-            entityManager.close();
-            factory.close();
+
         }
 
+        try {
+            Student s1 = entityManager.find(Student.class, 1);
+            System.out.println(s1);
+            System.out.println(s1.getCourses());
+
+            Student s2 = entityManager.find(Student.class, 2);
+            System.out.println(s2);
+            System.out.println(s2.getCourses());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        entityManager.close();
+        factory.close();
     }
 }

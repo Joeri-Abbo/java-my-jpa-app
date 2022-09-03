@@ -16,7 +16,7 @@ public class Student implements Serializable {
 
     private String name;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> courses;
 
     public Student() {
