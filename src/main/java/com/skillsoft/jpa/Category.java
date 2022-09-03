@@ -5,9 +5,8 @@ import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
 
-@Entity(name = "departments")
-public class Department implements Serializable {
-
+@Entity(name = "Categories")
+public class Category implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
@@ -17,13 +16,13 @@ public class Department implements Serializable {
     private String name;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "department_id")
-    private Set<Employee> employees;
+    private Set<Product> products;
 
-    public Department() {
+    public Category() {
+
     }
 
-    public Department(String name) {
+    public Category(String name) {
         this.name = name;
     }
 
@@ -43,14 +42,19 @@ public class Department implements Serializable {
         this.name = name;
     }
 
-    public Set<Employee> getEmployees() {
-        return employees;
+    public Set<Product> getProducts() {
+        return products;
     }
 
-    public void addEmployee(Employee employee) {
-        if (employees == null) {
-            employees = new HashSet<>();
+    public void setProducts(Product product) {
+        if (products == null) {
+            products = new HashSet<>();
         }
-        employees.add(employee);
+        products.add(product);
+    }
+
+    @Override
+    public String toString() {
+        return "\n{" + id + ", " + name + ", " + products + "}\n";
     }
 }

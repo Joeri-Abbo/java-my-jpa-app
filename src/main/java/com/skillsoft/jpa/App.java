@@ -5,46 +5,27 @@ import java.util.List;
 
 public class App {
 
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
 
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("CompanyDB_Unit");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("OnlineShippingDB_Unit");
         EntityManager entityManager = factory.createEntityManager();
 
         try {
-//            entityManager.getTransaction().begin();
-//
-//            Department engineering = new Department("Engineering");
-//
-//            FullTimeEmployee alice = new FullTimeEmployee("Alice", 50000);
-//            FullTimeEmployee ben = new FullTimeEmployee("Ben", 45000);
-//
-//            ContractEmployee cora = new ContractEmployee("Cora", 50);
-//            ContractEmployee dennis = new ContractEmployee("Dennis", 60);
-//
-//            Employee elsa = new Employee("Elsa");
-//
-//            engineering.addEmployee(alice);
-//            engineering.addEmployee(ben);
-//            engineering.addEmployee(cora);
-//            engineering.addEmployee(dennis);
-//            engineering.addEmployee(elsa);
-//
-//            entityManager.persist(engineering);
+            Query query = entityManager.createNativeQuery("SELECT * FROM Categories", Category.class);
 
-            FullTimeEmployee ft = entityManager.find(FullTimeEmployee.class, 2);
+            List<Category> categories = (List<Category>) query.getResultList();
 
-            System.out.println();
-            System.out.println(ft.getName() + " Salary: " + ft.getSalary());
+            categories.forEach(System.out::println);
 
-            ContractEmployee ct = entityManager.find(ContractEmployee.class, 1);
+            query = entityManager.createNativeQuery("SELECT * FROM Products",Product.class);
+            List<Product> products = (List<Product>) query.getResultList();
 
-            System.out.println();
-            System.out.println(ct.getName() + " Hourly pay: " + ct.getHourlyPay());
+            products.forEach(System.out::println);
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-//            entityManager.getTransaction().commit();
 
             entityManager.close();
             factory.close();
