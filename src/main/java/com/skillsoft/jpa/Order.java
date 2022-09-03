@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.JoinColumn;
+import javax.persistence.OrderColumn;
 
 @Entity(name = "Orders")
 public class Order implements Serializable {
@@ -15,7 +16,7 @@ public class Order implements Serializable {
     private Integer id;
     @OneToMany
     @JoinColumn(name = "order_id")
-    @OrderBy("name ASC")
+    @OrderColumn(name = "order_persistence")
     private List<Product> products;
     private Integer quantity;
 
