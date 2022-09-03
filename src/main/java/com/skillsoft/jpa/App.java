@@ -1,7 +1,9 @@
 package com.skillsoft.jpa;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -15,14 +17,14 @@ public class App {
         try {
             entityManager.getTransaction().begin();
 
-            List<String> listSarah = new ArrayList<>();
+            Set<String> listSarah = new HashSet<>();
 
             listSarah.add("Data Structures and Algorithms");
             listSarah.add("Statistics");
             listSarah.add("English");
             listSarah.add("Data Structures and Algorithms");
 
-            List<String> listTom = new ArrayList<>();
+            Set<String> listTom = new HashSet<>();
             listTom.add("Geology");
             listTom.add("Math");
 
