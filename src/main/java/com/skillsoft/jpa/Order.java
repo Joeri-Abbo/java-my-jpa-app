@@ -4,8 +4,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.JoinColumn;
-import javax.persistence.OrderColumn;
 
 @Entity(name = "Orders")
 public class Order implements Serializable {
@@ -14,10 +12,11 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer quantity;
-
     @Temporal(TemporalType.DATE)
     private Date orderDate;
+
+    @OneToMany(mappedBy = "order")
+    private List<Product> products;
 
     public Order() {
 
@@ -34,15 +33,6 @@ public class Order implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
     public Date getOrderDate() {
         return orderDate;
     }
@@ -51,6 +41,13 @@ public class Order implements Serializable {
         this.orderDate = orderDate;
     }
 
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
 
     public String toString() {
         return "\n{" + id + ", " + orderDate + "}\n";

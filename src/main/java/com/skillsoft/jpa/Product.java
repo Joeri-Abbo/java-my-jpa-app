@@ -15,7 +15,7 @@ public class Product implements Serializable {
     private Integer quantity;
 
     @ManyToOne
-    @JoinTable(name = "products_orders", joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "id"),}, inverseJoinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "id")})
+    @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
     public Product() {
