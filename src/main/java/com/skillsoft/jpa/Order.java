@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 
 @Entity(name = "Orders")
 public class Order implements Serializable {
@@ -13,7 +13,8 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany
+    @JoinColumn(name = "order_id")
     private List<Product> products;
     private Integer quantity;
 
