@@ -1,10 +1,9 @@
 package com.skillsoft.jpa;
 
 import java.io.Serializable;
-import java.util.*;
 import javax.persistence.*;
 
-@Entity(name = "employees")
+@MappedSuperclass
 public class Employee implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -12,11 +11,6 @@ public class Employee implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-
-    @ManyToOne
-    @JoinColumn(name = "department_id")
-    private Department department;
-
     public Employee() {
 
     }
@@ -39,13 +33,5 @@ public class Employee implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
     }
 }

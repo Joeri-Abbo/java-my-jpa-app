@@ -5,9 +5,8 @@ import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
 
-@Entity(name = "departments")
-public class Department implements Serializable {
-
+@Entity(name = "vendors")
+public class Vendor implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
@@ -17,13 +16,14 @@ public class Department implements Serializable {
     private String name;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "department_id")
-    private Set<FullTimeEmployee> employees;
+    @JoinColumn(name = "vendor_id")
+    private Set<ContractEmployee> employees;
 
-    public Department() {
+    public Vendor() {
+
     }
 
-    public Department(String name) {
+    public Vendor(String name) {
         this.name = name;
     }
 
@@ -43,11 +43,11 @@ public class Department implements Serializable {
         this.name = name;
     }
 
-    public Set<FullTimeEmployee> getEmployees() {
+    public Set<ContractEmployee> getEmployees() {
         return employees;
     }
 
-    public void addEmployee(FullTimeEmployee employee) {
+    public void addEmployee(ContractEmployee employee) {
         if (employees == null) {
             employees = new HashSet<>();
         }
