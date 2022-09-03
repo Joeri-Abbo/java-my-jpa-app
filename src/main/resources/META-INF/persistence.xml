@@ -4,9 +4,9 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              version="2.1">
-    <persistence-unit name="UniversityDB_Unit">
+    <persistence-unit name="CompanyDB_Unit">
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/universitydb"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/companyDB"/>
             <property name="javax.persistence.jdbc.user" value="mysql"/>
             <property name="javax.persistence.jdbc.password" value="mysql"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
