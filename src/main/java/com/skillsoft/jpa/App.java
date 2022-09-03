@@ -14,15 +14,15 @@ public class App {
         try {
             entityManager.getTransaction().begin();
 
-            Map<Integer, String> listSarah = new HashMap<>();
+            Map<Integer, Course> listSarah = new HashMap<>();
 
-            listSarah.put(141, "Data Structures and Algorithms");
-            listSarah.put(101, "Statistics");
-            listSarah.put(104, "English");
+            listSarah.put(141, new Course("Intermediate", "Data Structures and Algorithms"));
+            listSarah.put(101, new Course("Basic", "Statistics"));
+            listSarah.put(104, new Course("Basic", "English"));
 
-            Map<Integer, String> listTom = new HashMap<>();
-            listTom.put(40, "Geology");
-            listTom.put(90, "Math");
+            Map<Integer, Course> listTom = new HashMap<>();
+            listTom.put(40, new Course("Intermediate", "Geology"));
+            listTom.put(90, new Course("Advanced", "Math"));
 
             Student studentSarah = new Student("Sarah", listSarah);
             Student studentTom = new Student("Tom", listTom);

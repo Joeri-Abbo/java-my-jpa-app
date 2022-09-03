@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Embeddable
 public class Course {
-    private String code;
+    private String level;
     private String name;
 
     public Course() {
@@ -12,16 +12,16 @@ public class Course {
     }
 
     public Course(String code, String name) {
-        this.code = code;
+        this.level = code;
         this.name = name;
     }
 
-    public String getCode() {
-        return code;
+    public String getLevel() {
+        return level;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     public String getName() {
