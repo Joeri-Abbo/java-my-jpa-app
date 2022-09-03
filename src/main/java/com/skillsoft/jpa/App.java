@@ -22,8 +22,8 @@ public class App {
             Order orderOne = new Order("iPhone 6S", 1, new GregorianCalendar(2020, Calendar.FEBRUARY, 3).getTime());
             Order orderTwo = new Order("Nike Sneakers", 2, new GregorianCalendar(2020, Calendar.MARCH, 5).getTime());
 
-            orderOne.setInvoice(invoiceOne);
-            orderTwo.setInvoice(invoiceTwo);
+            invoiceOne.setOrder(orderOne);
+            invoiceTwo.setOrder(orderTwo);
 
             entityManager.persist(orderOne);
             entityManager.persist(orderTwo);
@@ -35,21 +35,10 @@ public class App {
             e.printStackTrace();
         } finally {
             entityManager.getTransaction().commit();
+
+            entityManager.close();
+            factory.close();
         }
 
-
-        System.out.println("Get data.");
-        try {
-           Invoice invoiceOne = entityManager.find(Invoice.class, 1);
-           System.out.println(invoiceOne);
-           Invoice invoiceTwo = entityManager.find(Invoice.class, 2);
-            System.out.println(invoiceTwo);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        entityManager.close();
-        factory.close();
     }
 }
