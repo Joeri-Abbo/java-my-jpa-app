@@ -3,14 +3,15 @@ package com.skillsoft.jpa;
 import java.io.Serializable;
 import javax.persistence.*;
 
-@MappedSuperclass
+@Entity(name = "employees")
 public class Employee implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
+
     public Employee() {
 
     }
