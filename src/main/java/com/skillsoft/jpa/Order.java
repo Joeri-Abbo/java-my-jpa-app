@@ -4,8 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+import javax.persistence.FetchType;
 
 @Entity(name = "Orders")
 public class Order implements Serializable {
@@ -14,17 +13,12 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @OneToMany
-    @JoinTable(name = "order_product_mapping", joinColumns = {@JoinColumn(name = "o_id", referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "p_id", referencedColumnName = "id")})
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Product> products;
     private Integer quantity;
 
     @Temporal(TemporalType.DATE)
     private Date orderDate;
-
-    @OneToOne
-    @JoinTable(name = "order_invoice", joinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "invoice_id", referencedColumnName = "id")})
-    private Invoice invoice;
 
     public Order() {
 
@@ -67,13 +61,6 @@ public class Order implements Serializable {
         this.orderDate = orderDate;
     }
 
-    public Invoice getInvoice() {
-        return invoice;
-    }
-
-    public void setInvoice(Invoice invoice) {
-        this.invoice = invoice;
-    }
 
     public String toString() {
         return "\n{" + id + ", " + products + ", " + quantity + "}\n";
