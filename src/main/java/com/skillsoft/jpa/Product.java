@@ -15,10 +15,7 @@ public class Product implements Serializable {
     private Integer quantity;
 
     @ManyToOne
-    @JoinColumns({
-            @JoinColumn(name = "order_id", referencedColumnName = "id"),
-            @JoinColumn(name = "order_date", referencedColumnName = "orderDate")
-    })
+    @JoinTable(name = "products_orders", joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "id"),}, inverseJoinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "id")})
     private Order order;
 
     public Product() {
@@ -53,6 +50,14 @@ public class Product implements Serializable {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     @Override

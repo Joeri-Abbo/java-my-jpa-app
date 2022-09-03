@@ -53,6 +53,6 @@ public class Order implements Serializable {
 
 
     public String toString() {
-        return "\n{" + id + ", " + quantity + "}\n";
+        return "\n{" + id + ", " + orderDate + "}\n";
     }
 }
