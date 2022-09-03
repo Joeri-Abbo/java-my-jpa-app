@@ -11,8 +11,8 @@ public class App {
         EntityManager entityManager = factory.createEntityManager();
 
         try {
-            TypedQuery<Product> productQuery = entityManager.createQuery("SELECT p FROM Products p WHERE p.id < ?1 ORDER BY price DESC", Product.class);
-            productQuery.setParameter(1, 1008);
+            TypedQuery<Product> productQuery = entityManager.createQuery("SELECT p FROM Products p WHERE p.name LIKE :nameStartsWith", Product.class);
+            productQuery.setParameter("nameStartsWith", "iPh%");
             List<Product> products = productQuery.getResultList();
             System.out.println(products);
 
