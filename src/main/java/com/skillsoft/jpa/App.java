@@ -1,9 +1,6 @@
 package com.skillsoft.jpa;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.persistence.*;
 
@@ -17,15 +14,15 @@ public class App {
         try {
             entityManager.getTransaction().begin();
 
-            Set<Course> listSarah = new HashSet<>();
+            Map<Integer, String> listSarah = new HashMap<>();
 
-            listSarah.add(new Course("CS141", "Data Structures and Algorithms"));
-            listSarah.add(new Course("STAT101", "Statistics"));
-            listSarah.add(new Course("EN104", "English"));
+            listSarah.put(141, "Data Structures and Algorithms");
+            listSarah.put(101, "Statistics");
+            listSarah.put(104, "English");
 
-            Set<Course> listTom = new HashSet<>();
-            listTom.add(new Course("GEO40", "Geology"));
-            listTom.add(new Course("MATH90", "Math"));
+            Map<Integer, String> listTom = new HashMap<>();
+            listTom.put(40, "Geology");
+            listTom.put(90, "Math");
 
             Student studentSarah = new Student("Sarah", listSarah);
             Student studentTom = new Student("Tom", listTom);

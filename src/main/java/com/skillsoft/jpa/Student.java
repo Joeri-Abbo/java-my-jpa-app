@@ -1,8 +1,7 @@
 package com.skillsoft.jpa;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 import javax.persistence.*;
 
@@ -19,13 +18,13 @@ public class Student implements Serializable {
 
     @ElementCollection
     @CollectionTable(name = "courses")
-    private Set<Course> courses;
+    private Map<Integer, String> courses;
 
     public Student() {
 
     }
 
-    public Student(String name, Set<Course> courses) {
+    public Student(String name, Map<Integer, String> courses) {
         this.name = name;
         this.courses = courses;
     }
@@ -46,11 +45,11 @@ public class Student implements Serializable {
         this.name = name;
     }
 
-    public Set<Course> getCourses() {
+    public Map<Integer, String> getCourses() {
         return courses;
     }
 
-    public void setCourses(Set<Course> courses) {
+    public void setCourses(Map<Integer, String> courses) {
         this.courses = courses;
     }
 
