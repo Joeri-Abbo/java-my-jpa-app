@@ -1,12 +1,6 @@
 package com.skillsoft.jpa;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity(name = "Orders")
@@ -21,6 +15,7 @@ public class Order {
     private Date orderDate;
 
     @OneToOne
+    @JoinColumn(name = "invoice_key", referencedColumnName = "invoiceId")
     private Invoice invoice;
 
     public Order() {
@@ -74,6 +69,6 @@ public class Order {
     }
 
     public String toString() {
-        return "\n{" + id + ", " + product + ", " + quantity + ", " + invoice + "]\n";
+        return "\n{" + id + ", " + product + ", " + quantity + ", " + invoice + "}\n";
     }
 }

@@ -18,12 +18,15 @@ public class Invoice implements Serializable {
     private Integer id;
     private Float amount;
 
+    private Long invoiceId;
+
     public Invoice() {
 
     }
 
     public Invoice(Float amount) {
         this.amount = amount;
+        this.invoiceId = ((Double) (Math.random() * 1000000)).longValue();
     }
 
     public Integer getId() {
@@ -44,6 +47,6 @@ public class Invoice implements Serializable {
 
     @Override
     public String toString() {
-        return "\n{" + id + ", " + amount + "]\n";
+        return "\n{" + id + ", " + amount + ", " + invoiceId + "}\n";
     }
 }
