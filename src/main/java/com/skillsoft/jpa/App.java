@@ -1,6 +1,7 @@
 package com.skillsoft.jpa;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.List;
 
 public class App {
@@ -11,8 +12,14 @@ public class App {
         EntityManager entityManager = factory.createEntityManager();
 
         try {
-            TypedQuery<Double> productQuery = entityManager.createQuery("SELECT AVG (p.price) FROM Products p", Double.class);
-            System.out.println(productQuery.getSingleResult());
+            Query aggQuery = entityManager.createQuery("SELECT c.name, AVG (p.price) FROM Categories c INNER JOIN c.products p GROUP BY c.name");
+
+            @SuppressWarnings("unchecked")
+            List<Object[]> resultList = aggQuery.getResultList();
+
+            System.out.println();
+            resultList.forEach(r -> System.out.println(Arrays.toString(r)));
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
