@@ -12,11 +12,11 @@ public class App {
         EntityManager entityManager = factory.createEntityManager();
 
         try {
-            Query aggQuery = entityManager.createQuery("SELECT c.name, AVG (p.price) FROM Categories c INNER JOIN c.products p GROUP BY c.name HAVING MAX(p.price) > ?1");
-            aggQuery.setParameter(1, 50f);
+            Query query = entityManager.createQuery("SELECT c.name, c.id FROM Categories c WHERE EXISTS (SELECT p FROM Products p WHERE p.price > ?1 AND p.category.id = c.id)");
+            query.setParameter(1, 50f);
 
-            @SuppressWarnings("unchecked")
-            List<Object[]> resultList = aggQuery.getResultList();
+
+            @SuppressWarnings("unchecked") List<Object[]> resultList = query.getResultList();
 
             System.out.println();
             resultList.forEach(r -> System.out.println(Arrays.toString(r)));
