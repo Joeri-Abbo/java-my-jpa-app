@@ -12,17 +12,17 @@ public class App {
         EntityManager entityManager = factory.createEntityManager();
 
         try {
-            Query query = entityManager.createQuery("SELECT p.name, p.price, " +
-                    "CASE p.category.id " +
-                    "WHEN 221 THEN 'Mobile Phones'" +
-                    "WHEN 241 THEN 'Home and Kitchen'" +
-                    "ELSE p.category.name END " +
-                    "FROM Products p");
+            TypedQuery<CategoryPrice> aggQuery = entityManager.createQuery(
+                    "SELECT NEW com.skillsoft.jpa.CategoryPrice(c.name, AVG(p.price)) " +
+                            "FROM Categories c " +
+                            "INNER JOIN c.products p GROUP BY c.name", CategoryPrice.class
+            );
 
-            @SuppressWarnings("unchecked") List<Object[]> resultList = query.getResultList();
+            @SuppressWarnings("unchecked")
+            List<CategoryPrice> resultList = aggQuery.getResultList();
 
             System.out.println();
-            resultList.forEach(r -> System.out.println(Arrays.toString(r)));
+            resultList.forEach(r -> System.out.println(r));
 
         } catch (Exception e) {
             e.printStackTrace();
