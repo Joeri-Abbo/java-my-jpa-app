@@ -6,17 +6,15 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity(name = "Products")
-@NamedQueries({@NamedQuery(name = Product.PRODUCTS_IN_CATEGORY, query = "SELECT p FROM Products p WHERE p.category.id = :categoryId"), @NamedQuery(name = Product.PRODUCTS_IN_PRICE_RANGE, query = "SELECT p FROM Products p WHERE p.price >= :low AND p.price <= :high")})
 public class Product implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
-    public static final String PRODUCTS_IN_CATEGORY = "selectProductsInCategory";
-    public static final String PRODUCTS_IN_PRICE_RANGE = "selectProductsInPriceRange";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private Float price;
+    private boolean inStock;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -61,6 +59,14 @@ public class Product implements Serializable {
 
     public void setPrice(Float price) {
         this.price = price;
+    }
+
+    public boolean isInStock() {
+        return inStock;
+    }
+
+    public void setInStock(boolean inStock) {
+        this.inStock = inStock;
     }
 
     @Override

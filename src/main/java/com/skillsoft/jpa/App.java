@@ -1,6 +1,9 @@
 package com.skillsoft.jpa;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 public class App {
 
@@ -10,15 +13,13 @@ public class App {
         EntityManager entityManager = factory.createEntityManager();
 
         try {
-            TypedQuery<Product> productQuery1 = entityManager.createNamedQuery(Product.PRODUCTS_IN_CATEGORY, Product.class);
-            productQuery1.setParameter("categoryId", 231);
-            System.out.println(productQuery1.getResultList());
+            CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+            CriteriaQuery<Category> categoryCQ = cb.createQuery(Category.class);
+            Root<Category> rootCategory = categoryCQ.from(Category.class);
 
-            TypedQuery<Product> productQuery2 = entityManager.createNamedQuery(Product.PRODUCTS_IN_PRICE_RANGE, Product.class);
-            productQuery2.setParameter("low", 100f);
-            productQuery2.setParameter("high", 1000f);
-            System.out.println(productQuery2.getResultList());
-
+            categoryCQ.select(rootCategory);
+            TypedQuery<Category> categoryQuery = entityManager.createQuery(categoryCQ);
+            System.out.println(categoryQuery.getResultList());
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
