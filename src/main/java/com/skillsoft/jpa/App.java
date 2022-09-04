@@ -13,16 +13,14 @@ public class App {
 
         try {
             entityManager.getTransaction().begin();
-            Query updateQuery = entityManager.createQuery("UPDATE Categories c SET c.name = " +
-                    "CASE " +
-                    "WHEN c.id = 221 THEN 'Mobiles and Accessories' " +
-                    "WHEN c.id = 241 THEN 'Home and Kitchen' " +
-                    "ELSE c.name " +
-                    "END ");
+            Query updateQuery = entityManager.createQuery(
+                    "DELETE Products p WHERE p.id > :id");
+
+            updateQuery.setParameter("id", 1007);
 
             int rowsUpdated = updateQuery.executeUpdate();
 
-            System.out.println("\n\nNumber of rows updated: " + rowsUpdated);
+            System.out.println("\n\nNumber of rows deleted: " + rowsUpdated);
 
         } catch (Exception e) {
             e.printStackTrace();
