@@ -20,7 +20,7 @@ public class App {
             Root<Product> rootProduct = productCQ.from(Product.class);
 
             Predicate equalToPredicate = cb.equal(rootProduct.get("category"),261);
-            productCQ.select(rootProduct).where(equalToPredicate);
+            productCQ.select(rootProduct).where(equalToPredicate.not());
 
             TypedQuery<Product> productQuery = entityManager.createQuery(productCQ);
             System.out.println(productQuery.getResultList());
