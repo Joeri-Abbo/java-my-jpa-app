@@ -12,9 +12,9 @@ public class App {
         EntityManager entityManager = factory.createEntityManager();
 
         try {
-            Query categoryQuery = entityManager.createNamedQuery("selectSpecificCategory");
+            TypedQuery<Category> categoryQuery = entityManager.createNamedQuery(Category.SELECT_SPECIFIC_CATEGORY, Category.class);
             categoryQuery.setParameter("categoryName", "Fashion");
-            System.out.println(categoryQuery.getResultList());
+            System.out.println(categoryQuery.getSingleResult());
 
         } catch (Exception e) {
             e.printStackTrace();
