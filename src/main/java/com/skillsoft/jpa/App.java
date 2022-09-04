@@ -12,17 +12,14 @@ public class App {
         EntityManager entityManager = factory.createEntityManager();
 
         try {
-            TypedQuery<CategoryPrice> aggQuery = entityManager.createQuery(
-                    "SELECT NEW com.skillsoft.jpa.CategoryPrice(c.name, AVG(p.price)) " +
-                            "FROM Categories c " +
-                            "INNER JOIN c.products p GROUP BY c.name", CategoryPrice.class
-            );
+            entityManager.getTransaction().begin();
+            Query updateQuery = entityManager.createQuery("UPDATE Products p SET p.name = 'Gel Pens' WHERE p.name = :name");
 
-            @SuppressWarnings("unchecked")
-            List<CategoryPrice> resultList = aggQuery.getResultList();
+            updateQuery.setParameter("name", "Pen");
 
-            System.out.println();
-            resultList.forEach(r -> System.out.println(r));
+            int rowsUpdated = updateQuery.executeUpdate();
+
+            System.out.println("\n\nNumber of rows updated: " + rowsUpdated);
 
         } catch (Exception e) {
             e.printStackTrace();
