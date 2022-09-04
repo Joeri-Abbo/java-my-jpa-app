@@ -14,12 +14,15 @@ public class App {
 
         try {
             CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-            CriteriaQuery<Category> categoryCQ = cb.createQuery(Category.class);
-            Root<Category> rootCategory = categoryCQ.from(Category.class);
 
-            categoryCQ.select(rootCategory);
-            TypedQuery<Category> categoryQuery = entityManager.createQuery(categoryCQ);
-            System.out.println(categoryQuery.getResultList());
+            CriteriaQuery<Product> productCQ = cb.createQuery(Product.class);
+            Root<Product> rootProduct = productCQ.from(Product.class);
+
+            productCQ.select(rootProduct)
+                    .where(cb.equal(rootProduct.get("id"), 1011));
+
+            TypedQuery<Product> productQuery = entityManager.createQuery(productCQ);
+            System.out.println(productQuery.getResultList());
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

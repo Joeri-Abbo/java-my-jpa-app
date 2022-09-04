@@ -14,7 +14,7 @@ public class Product implements Serializable {
     private Integer id;
     private String name;
     private Float price;
-    private boolean inStock;
+    private Boolean inStock;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
