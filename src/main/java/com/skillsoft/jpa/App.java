@@ -12,7 +12,8 @@ public class App {
         EntityManager entityManager = factory.createEntityManager();
 
         try {
-            Query aggQuery = entityManager.createQuery("SELECT c.name, AVG (p.price) FROM Categories c INNER JOIN c.products p GROUP BY c.name");
+            Query aggQuery = entityManager.createQuery("SELECT c.name, AVG (p.price) FROM Categories c INNER JOIN c.products p GROUP BY c.name HAVING MAX(p.price) > ?1");
+            aggQuery.setParameter(1, 50f);
 
             @SuppressWarnings("unchecked")
             List<Object[]> resultList = aggQuery.getResultList();
