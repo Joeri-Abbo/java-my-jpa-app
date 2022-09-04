@@ -19,8 +19,8 @@ public class App {
             CriteriaQuery<Product> productCQ = cb.createQuery(Product.class);
             Root<Product> rootProduct = productCQ.from(Product.class);
 
-            Predicate equalToPredicate = cb.equal(rootProduct.get("category"),261);
-            productCQ.select(rootProduct).where(equalToPredicate.not());
+            productCQ.select(rootProduct).
+                    orderBy(cb.asc(rootProduct.get("price")));
 
             TypedQuery<Product> productQuery = entityManager.createQuery(productCQ);
             System.out.println(productQuery.getResultList());
