@@ -12,9 +12,12 @@ public class App {
         EntityManager entityManager = factory.createEntityManager();
 
         try {
-            Query query = entityManager.createQuery("SELECT c.name, c.id FROM Categories c WHERE EXISTS (SELECT p FROM Products p WHERE p.price > ?1 AND p.category.id = c.id)");
-            query.setParameter(1, 50f);
-
+            Query query = entityManager.createQuery("SELECT p.name, p.price, " +
+                    "CASE p.category.id " +
+                    "WHEN 221 THEN 'Mobile Phones'" +
+                    "WHEN 241 THEN 'Home and Kitchen'" +
+                    "ELSE p.category.name END " +
+                    "FROM Products p");
 
             @SuppressWarnings("unchecked") List<Object[]> resultList = query.getResultList();
 
