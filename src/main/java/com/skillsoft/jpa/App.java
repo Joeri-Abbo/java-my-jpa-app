@@ -19,7 +19,7 @@ public class App {
             Root<Product> rootProduct = productCQ.from(Product.class);
 
             productCQ.select(rootProduct)
-                    .where(cb.equal(rootProduct.get("id"), 1011));
+                    .where(cb.greaterThan(rootProduct.get("price"), 5));
 
             TypedQuery<Product> productQuery = entityManager.createQuery(productCQ);
             System.out.println(productQuery.getResultList());
