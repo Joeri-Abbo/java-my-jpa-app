@@ -12,15 +12,9 @@ public class App {
         EntityManager entityManager = factory.createEntityManager();
 
         try {
-            entityManager.getTransaction().begin();
-            Query updateQuery = entityManager.createQuery(
-                    "DELETE Products p WHERE p.id > :id");
-
-            updateQuery.setParameter("id", 1007);
-
-            int rowsUpdated = updateQuery.executeUpdate();
-
-            System.out.println("\n\nNumber of rows deleted: " + rowsUpdated);
+            Query categoryQuery = entityManager.createNamedQuery("selectSpecificCategory");
+            categoryQuery.setParameter("categoryName", "Fashion");
+            System.out.println(categoryQuery.getResultList());
 
         } catch (Exception e) {
             e.printStackTrace();

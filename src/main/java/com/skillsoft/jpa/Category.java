@@ -6,6 +6,8 @@ import java.util.*;
 import javax.persistence.*;
 
 @Entity(name = "Categories")
+@NamedQuery(name = "selectSpecificCategory",
+        query = "SELECT c FROM Categories c WHERE c.name = :categoryName")
 public class Category implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
