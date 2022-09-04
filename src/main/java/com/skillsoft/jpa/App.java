@@ -11,14 +11,8 @@ public class App {
         EntityManager entityManager = factory.createEntityManager();
 
         try {
-            TypedQuery<Category> categoryQuery = entityManager.createQuery("SELECT c FROM Categories c INNER JOIN FETCH c.products p WHERE p.name IN (?1, ?2, ?3)", Category.class);
-
-            categoryQuery.setParameter(1, "Samsung Galaxy");
-            categoryQuery.setParameter(2, "Jeans");
-            categoryQuery.setParameter(3, "Notebook");
-            List<Category> categories = categoryQuery.getResultList();
-            System.out.println(categories);
-
+            TypedQuery<Long> categoryQuery = entityManager.createQuery("SELECT COUNT(c) FROM Categories c", Long.class);
+            System.out.println(categoryQuery.getSingleResult());
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
