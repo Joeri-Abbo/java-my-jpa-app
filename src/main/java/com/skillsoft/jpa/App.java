@@ -3,6 +3,7 @@ package com.skillsoft.jpa;
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 public class App {
@@ -18,8 +19,8 @@ public class App {
             CriteriaQuery<Product> productCQ = cb.createQuery(Product.class);
             Root<Product> rootProduct = productCQ.from(Product.class);
 
-            productCQ.select(rootProduct)
-                    .where(cb.greaterThan(rootProduct.get("price"), 5));
+            Predicate equalToPredicate = cb.equal(rootProduct.get("category"),261);
+            productCQ.select(rootProduct).where(equalToPredicate);
 
             TypedQuery<Product> productQuery = entityManager.createQuery(productCQ);
             System.out.println(productQuery.getResultList());
