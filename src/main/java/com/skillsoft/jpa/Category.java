@@ -16,6 +16,7 @@ public class Category implements Serializable {
     private String name;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
     private Set<Product> products;
 
     public Category() {
