@@ -11,8 +11,8 @@ public class App {
         EntityManager entityManager = factory.createEntityManager();
 
         try {
-            TypedQuery<Long> categoryQuery = entityManager.createQuery("SELECT COUNT(c) FROM Categories c", Long.class);
-            System.out.println(categoryQuery.getSingleResult());
+            TypedQuery<Double> productQuery = entityManager.createQuery("SELECT AVG (p.price) FROM Products p", Double.class);
+            System.out.println(productQuery.getSingleResult());
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
