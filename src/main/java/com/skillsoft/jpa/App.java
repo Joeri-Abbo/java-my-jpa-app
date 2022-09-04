@@ -13,9 +13,12 @@ public class App {
 
         try {
             entityManager.getTransaction().begin();
-            Query updateQuery = entityManager.createQuery("UPDATE Products p SET p.name = 'Gel Pens' WHERE p.name = :name");
-
-            updateQuery.setParameter("name", "Pen");
+            Query updateQuery = entityManager.createQuery("UPDATE Categories c SET c.name = " +
+                    "CASE " +
+                    "WHEN c.id = 221 THEN 'Mobiles and Accessories' " +
+                    "WHEN c.id = 241 THEN 'Home and Kitchen' " +
+                    "ELSE c.name " +
+                    "END ");
 
             int rowsUpdated = updateQuery.executeUpdate();
 
