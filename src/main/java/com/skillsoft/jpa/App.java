@@ -5,6 +5,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.Arrays;
 
 public class App {
 
@@ -16,14 +17,14 @@ public class App {
         try {
             CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 
-            CriteriaQuery<String> productCQ = cb.createQuery(String.class);
+            CriteriaQuery<Object[]> productCQ = cb.createQuery(Object[].class);
             Root<Product> rootProduct = productCQ.from(Product.class);
 
-            productCQ.select(rootProduct.get("name"));
+            productCQ.select(cb.array(rootProduct.get("name"), rootProduct.get("price")));
 
-            TypedQuery<String> productQuery = entityManager.createQuery(productCQ);
+            TypedQuery<Object[]> productQuery = entityManager.createQuery(productCQ);
 
-            productQuery.getResultList().forEach(System.out::println);
+            productQuery.getResultList().forEach(r -> System.out.println(Arrays.toString(r)));
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
