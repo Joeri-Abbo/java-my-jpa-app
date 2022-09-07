@@ -48,6 +48,15 @@ public class Department {
     public void onPostUpdate() {
         System.out.println("\n********* after updating department object: " + name);
     }
+    @PreRemove
+    public void onPreRemove() {
+        System.out.println("\n********* Before removing department object: " + name);
+    }
+
+    @PostRemove
+    public void onPostRemove() {
+        System.out.println("\n********* after removing department object: " + name);
+    }
 
     public Integer getId() {
         return id;
