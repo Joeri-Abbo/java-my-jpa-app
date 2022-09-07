@@ -13,12 +13,9 @@ public class App {
         try {
             entityManager.getTransaction().begin();
 
-            Department operations = entityManager.find(Department.class, 2);
-            operations.setName("Operations");
-
-            Employee elise = new Employee("Elise");
-            operations.addEmployee(elise);
-            entityManager.merge(operations);
+            Employee employee = entityManager.find(Employee.class, 2);
+            employee.setName("Zoe");
+            entityManager.merge(employee);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
