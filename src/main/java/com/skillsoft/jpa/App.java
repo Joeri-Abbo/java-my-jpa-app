@@ -1,6 +1,7 @@
 package com.skillsoft.jpa;
 
 import javax.persistence.*;
+import java.util.List;
 
 public class App {
 
@@ -10,10 +11,10 @@ public class App {
         EntityManager entityManager = factory.createEntityManager();
 
         try {
-            Department tech = entityManager.find(Department.class, 1);
-            System.out.println(tech);
-            Department operations = entityManager.find(Department.class, 2);
-            System.out.println(operations);
+            TypedQuery<Department> deptQuery = entityManager.createQuery("SELECT d FROM departments d", Department.class);
+
+            List<Department> departmentList = deptQuery.getResultList();
+            System.out.println(departmentList);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
