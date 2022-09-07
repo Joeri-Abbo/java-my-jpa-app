@@ -1,33 +1,37 @@
 package com.skillsoft.jpa;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-import java.util.Arrays;
 
 public class App {
 
     public static void main(String[] args) {
 
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("OnlineShippingDB_Unit");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("CompanyDB_Unit");
         EntityManager entityManager = factory.createEntityManager();
 
         try {
-            CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+            entityManager.getTransaction().begin();
 
-            CriteriaQuery<Object[]> productCQ = cb.createQuery(Object[].class);
-            Root<Product> rootProduct = productCQ.from(Product.class);
+            Employee alice = new Employee("Alice");
+            Employee ben = new Employee("Ben");
+            Employee cora = new Employee("Cora");
+            Employee dennis = new Employee("Dennis");
 
-            productCQ.multiselect(rootProduct.get("category"), cb.count(rootProduct)).groupBy(rootProduct.get("category"));
+            Department tech = new Department("Tech");
 
-            TypedQuery<Object[]> productQuery = entityManager.createQuery(productCQ);
+            tech.addEmployee(alice);
+            tech.addEmployee(ben);
 
-            productQuery.getResultList().forEach(r -> System.out.println(Arrays.toString(r)));
+            Department operations = new Department("Operations");
+            operations.addEmployee(cora);
+            operations.addEmployee(dennis);
+
+            entityManager.persist(tech);
+            entityManager.persist(operations);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+            entityManager.getTransaction().commit();
 
             entityManager.close();
             factory.close();
