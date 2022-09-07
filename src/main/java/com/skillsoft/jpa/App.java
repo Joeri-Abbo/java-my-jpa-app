@@ -11,13 +11,18 @@ public class App {
         EntityManager entityManager = factory.createEntityManager();
 
         try {
-            TypedQuery<Department> deptQuery = entityManager.createQuery("SELECT d FROM departments d", Department.class);
+            entityManager.getTransaction().begin();
 
-            List<Department> departmentList = deptQuery.getResultList();
-            System.out.println(departmentList);
+            Department operations = entityManager.find(Department.class, 2);
+            operations.setName("Operations");
+
+            Employee elise = new Employee("Elise");
+            operations.addEmployee(elise);
+            entityManager.merge(operations);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+            entityManager.getTransaction().commit();
             entityManager.close();
             factory.close();
         }

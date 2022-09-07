@@ -39,6 +39,16 @@ public class Department {
         System.out.println("\n********* after loading department object: " + name);
     }
 
+    @PreUpdate
+    public void onPreUpdate() {
+        System.out.println("\n********* Before updating department object: " + name);
+    }
+
+    @PostUpdate
+    public void onPostUpdate() {
+        System.out.println("\n********* after updating department object: " + name);
+    }
+
     public Integer getId() {
         return id;
     }
