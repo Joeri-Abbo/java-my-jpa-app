@@ -34,6 +34,10 @@ public class Department {
     public void onPostPersist() {
         System.out.println("\n********* after persisting department object: " + name);
     }
+    @PostLoad
+    public void onPostLoad() {
+        System.out.println("\n********* after loading department object: " + name);
+    }
 
     public Integer getId() {
         return id;

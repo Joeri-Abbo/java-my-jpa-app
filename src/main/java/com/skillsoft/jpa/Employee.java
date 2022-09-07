@@ -33,7 +33,10 @@ public class Employee implements Serializable {
     public void onPostPersist() {
         System.out.println("\n********* after persisting employee object: " + name);
     }
-
+    @PostLoad
+    public void onPostLoad() {
+        System.out.println("\n********* after loading employee object: " + name);
+    }
     public Integer getId() {
         return id;
     }
