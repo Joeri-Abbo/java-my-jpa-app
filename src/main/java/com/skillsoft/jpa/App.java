@@ -20,7 +20,7 @@ public class App {
             CriteriaQuery<Object[]> productCQ = cb.createQuery(Object[].class);
             Root<Product> rootProduct = productCQ.from(Product.class);
 
-            productCQ.multiselect(rootProduct.get("name"), rootProduct.get("price"));
+            productCQ.multiselect(rootProduct.get("category"), cb.count(rootProduct)).groupBy(rootProduct.get("category"));
 
             TypedQuery<Object[]> productQuery = entityManager.createQuery(productCQ);
 
