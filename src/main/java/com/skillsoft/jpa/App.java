@@ -13,9 +13,9 @@ public class App {
         try {
             entityManager.getTransaction().begin();
 
-            Employee employee = entityManager.find(Employee.class, 3);
+            Department department = entityManager.find(Department.class, 1);
 
-            entityManager.remove(employee);
+            entityManager.remove(department);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
