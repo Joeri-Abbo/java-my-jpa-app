@@ -1,11 +1,13 @@
 package com.skillsoft.jpa;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "departments")
-public class Department {
+@EntityListeners(DepartmentListener.class)
+public class Department implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -23,39 +25,6 @@ public class Department {
 
     public Department(String name) {
         this.name = name;
-    }
-
-    @PrePersist
-    public void onPrePersist() {
-        System.out.println("\n********* Before persisting department object: " + name);
-    }
-
-    @PostPersist
-    public void onPostPersist() {
-        System.out.println("\n********* after persisting department object: " + name);
-    }
-    @PostLoad
-    public void onPostLoad() {
-        System.out.println("\n********* after loading department object: " + name);
-    }
-
-    @PreUpdate
-    public void onPreUpdate() {
-        System.out.println("\n********* Before updating department object: " + name);
-    }
-
-    @PostUpdate
-    public void onPostUpdate() {
-        System.out.println("\n********* after updating department object: " + name);
-    }
-    @PreRemove
-    public void onPreRemove() {
-        System.out.println("\n********* Before removing department object: " + name);
-    }
-
-    @PostRemove
-    public void onPostRemove() {
-        System.out.println("\n********* after removing department object: " + name);
     }
 
     public Integer getId() {
