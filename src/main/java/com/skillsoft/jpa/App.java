@@ -16,14 +16,14 @@ public class App {
         try {
             CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 
-            CriteriaQuery<Product> productCQ = cb.createQuery(Product.class);
+            CriteriaQuery<String> productCQ = cb.createQuery(String.class);
             Root<Product> rootProduct = productCQ.from(Product.class);
 
-            productCQ.select(rootProduct).
-                    orderBy(cb.asc(rootProduct.get("price")));
+            productCQ.select(rootProduct.get("name"));
 
-            TypedQuery<Product> productQuery = entityManager.createQuery(productCQ);
-            System.out.println(productQuery.getResultList());
+            TypedQuery<String> productQuery = entityManager.createQuery(productCQ);
+
+            productQuery.getResultList().forEach(System.out::println);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
