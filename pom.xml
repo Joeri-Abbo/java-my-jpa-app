@@ -44,7 +44,7 @@
         <sourceDirectory>src/main/java</sourceDirectory>
         <plugins>
             <plugin>
-                <version>3.5.1</version>
+                <version>3.14.0</version>
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
             <configuration>
