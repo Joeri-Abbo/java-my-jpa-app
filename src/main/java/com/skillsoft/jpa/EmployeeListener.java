@@ -1,6 +1,6 @@
 package com.skillsoft.jpa;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 public class EmployeeListener {
 
